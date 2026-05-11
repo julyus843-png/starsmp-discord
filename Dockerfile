@@ -3,4 +3,4 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY src ./src
-CMD ["node", "--import", "tsx/esm", "src/index.ts"]
+CMD ["npx", "tsx", "src/index.ts"]
