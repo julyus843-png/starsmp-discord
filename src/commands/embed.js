@@ -25,8 +25,9 @@ export const embed = {
     const botMember = interaction.guild?.members.me;
     if (botMember) {
       const perms = targetChannel.permissionsFor(botMember);
-      if (!perms?.has(PermissionsBitField.Flags.SendMessages)) return interaction.reply({ content: `❌ I need Send Messages permission in <#${targetChannel.id}>.`, ephemeral: true });
-      if (!perms?.has(PermissionsBitField.Flags.EmbedLinks)) return interaction.reply({ content: `❌ I need Embed Links permission in <#${targetChannel.id}>.`, ephemeral: true });
+      if (!perms?.has(PermissionsBitField.Flags.ViewChannel)) return interaction.reply({ content: `❌ I don't have access to <#${targetChannel.id}>. Give me **View Channel** permission there.`, ephemeral: true });
+      if (!perms?.has(PermissionsBitField.Flags.SendMessages)) return interaction.reply({ content: `❌ I need **Send Messages** permission in <#${targetChannel.id}>.`, ephemeral: true });
+      if (!perms?.has(PermissionsBitField.Flags.EmbedLinks)) return interaction.reply({ content: `❌ I need **Embed Links** permission in <#${targetChannel.id}>.`, ephemeral: true });
     }
     const embedBuilder = new EmbedBuilder().setTitle(title).setDescription(description).setColor(color).setTimestamp();
     if (footer) embedBuilder.setFooter({ text: footer });
